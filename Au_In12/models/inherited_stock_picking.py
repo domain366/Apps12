@@ -66,7 +66,7 @@ class Picking(models.Model):
                         'fiscal_position_id': sale_order.fiscal_position_id.id or sale_order.partner_id.property_account_position_id.id,
                         'team_id': sale_order.team_id.id,
                         'comment': sale_order.note,})
-                    invoice.date_invoice =fields.Datetime.now().date()
+                    invoice.date_invoice =fields.Date.context_today(self)
                     for sale_line in self.move_lines:
                         if sale_line.product_id.property_account_income_id:
                             account = sale_line.product_id.property_account_income_id
